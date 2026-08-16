@@ -1,0 +1,39 @@
+Hola yo del futuro o compañero.
+para xampp hay que cambiar los puertos 80 a alguno diferente, actualmente lo tengo en 8080
+ademas para trabajar a gusto clone el repo en la carpeta raiz, pero para eso debemos cambiar en apache en config de httpd.conf buscamos "DocumentRoot"
+y cambiamos lo que esta por este.
+
+DocumentRoot "C:/xampp/desarrollo-web-y-movil/Semana 2"
+<Directory "C:/xampp/desarrollo-web-y-movil/Semana 2">
+    #
+    # Possible values for the Options directive are "None", "All",
+    # or any combination of:
+    #   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
+    #
+    # Note that "MultiViews" must be named *explicitly* --- "Options All"
+    # doesn't give it to you.
+    #
+    # The Options directive is both complicated and important.  Please see
+    # http://httpd.apache.org/docs/2.4/mod/core.html#options
+    # for more information.
+    #
+    Options Indexes FollowSymLinks Includes ExecCGI
+
+    #
+    # AllowOverride controls what directives may be placed in .htaccess files.
+    # It can be "All", "None", or any combination of the keywords:
+    #   AllowOverride FileInfo AuthConfig Limit
+    #
+    AllowOverride All
+
+    #
+    # Controls who can get stuff from this server.
+    #
+    Require all granted
+</Directory>
+
+y ya con eso arrancas apache de nuevo y entras a la carpeta clonada con http://localhost:8080/index.php
+ahora si no me auto segui los pasos y puse a lo tarsar la carpeta del servidor solo cambias la direcion de la carpeta donde esta alojado el index o home y entras con el link de arriba.
+
+
+un saludo a todos mis espectadores <3.
