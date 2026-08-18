@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Pagina principal</title>
+        <title>Contacto</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>        
     </head>
-    <body>
-        <!-- Navbar -->
+    <body class="d-flex flex-column min-vh-100">
+        
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.php">Logo</a>
+                <a class="navbar-brand" href="index.php">
+                    <img class="bg-light rounded p-2" width="50" src="img/guitarra.png" alt="Logo Guitarra">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
                 </button>        
@@ -39,36 +41,45 @@
                 <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModal">Acceder</button>             
             </div>         
         </nav>
-        <!-- Container -->
-        <div class="container-fluid bg-warning">
-            <form action="empresa.php">            
-                <div class="mb-3 mt-3">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-                </div>            
-                <label for="comment">Comentarios:</label>
-                <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
-                <button type="button" class="btn btn-primary mt-1">Enviar</button> 
-            </form>            
-        </div>
-        <!-- Footer -->
-        <div class="container-fluid bg-dark">
-            <div class="row">
-                <div class="col-4"></div>
-                <div class="col-4" style="color:white"><strong>MiEmpresa@2026</strong></div>
-                <div class="col-4"></div>
+        
+        <div class="container mt-5 mb-5 flex-grow-1">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="p-4 bg-light border rounded">
+                        <h2 class="text-center mb-4">Contáctanos</h2>
+                        <form action="empresa.php">            
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email:</label>
+                                <input type="email" class="form-control" id="email" placeholder="Ingresa tu email" name="email">
+                            </div>            
+                            <div class="mb-3">
+                                <label for="comment" class="form-label">Comentarios:</label>
+                                <textarea class="form-control" rows="5" id="comment" name="text" placeholder="Escribe tu mensaje aquí..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-1">Enviar</button> 
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- Modal -->
+        
+        <div class="container-fluid bg-dark mt-auto">
+            <div class="row d-flex justify-content-center">
+                <div class="col-4 text-center">
+                    <strong style="color:white">MiEmpresa@2026</strong>
+                </div>
+            </div>
+        </div>
+        
         <div class="modal fade" id="myModal">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <!-- Modal Header -->
+                    
                     <div class="modal-header">
                         <h4 class="modal-title">Autenticación</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
-                    <!-- Modal body -->
+                    
                     <div class="modal-body">
                         <form action="empresa.php">
                             <div class="mb-3 mt-3">
@@ -87,7 +98,7 @@
                             <button type="submit" class="btn btn-primary">Login</button>
                         </form>
                     </div>
-                    <!-- Modal footer -->
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>
