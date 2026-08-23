@@ -92,21 +92,21 @@
             
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://via.placeholder.com/1200x300/2c3e50/ffffff?text=Reglas+de+la+Comunidad+y+Bienvenida" class="d-block w-100" alt="Reglas del foro">
+                    <img src="https://placehold.co/600x200" class="d-block w-100" alt="Reglas del foro">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>¡Bienvenido a la comunidad!</h5>
                         <p>Lee las normas antes de publicar un nuevo tema.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://via.placeholder.com/1200x300/16a085/ffffff?text=Debate+Semanal:+Desarrollo+Web+y+PHP" class="d-block w-100" alt="Debate PHP">
+                    <img src="https://placehold.co/600x200" class="d-block w-100" alt="Debate PHP">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Debate Semanal</h5>
                         <p>Aprende las mejores prácticas para estructurar tus proyectos Web.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://via.placeholder.com/1200x300/2980b9/ffffff?text=Hackathon+2026:+Presenta+tu+Proyecto" class="d-block w-100" alt="Hackathon">
+                    <img src="https://placehold.co/600x200" class="d-block w-100" alt="Hackathon">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Concursos & Eventos</h5>
                         <p>Participa y comparte tus desarrollos con otros compañeros.</p>
