@@ -3,8 +3,8 @@ para xampp hay que cambiar los puertos 80 a alguno diferente, actualmente lo ten
 ademas para trabajar a gusto clone el repo en la carpeta raiz, pero para eso debemos cambiar en apache en config de httpd.conf buscamos "DocumentRoot"
 y cambiamos lo que esta por este.
 
-DocumentRoot "C:/xampp/desarrollo-web-y-movil/Semana 2"
-<Directory "C:/xampp/desarrollo-web-y-movil/Semana 2">
+DocumentRoot "C:/xampp/desarrollo-web-y-movil"
+<Directory "C:/xampp/desarrollo-web-y-movil">
     #
     # Possible values for the Options directive are "None", "All",
     # or any combination of:
