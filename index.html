@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio - Desarrollo Web y Móvil</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 3rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 600px; 
+        }
+
+        .folder-card {
+            background-color: var(--card-bg);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .folder-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            border-color: var(--primary);
+        }
+
+        .folder-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .folder-card h2 {
+            font-size: 1.25rem;
+            margin: 0 0 0.5rem 0;
+            color: var(--primary);
+        }
+
+        .folder-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .highlight-card {
+            border: 2px solid var(--primary);
+            background-color: #eff6ff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-badge {
+            position: absolute;
+            top: 10px;
+            right: -25px;
+            background: var(--primary);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 4px 30px;
+            transform: rotate(45deg);
+            text-transform: uppercase;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Portafolio de Proyectos</h1>
+        <p>Desarrollo Web y Móvil</p>
+    </div>
+
+    <div class="grid-container">
+        
+        <!-- Botón directo -->
+        <a href="Semana_7_Entrega_1/" class="folder-card highlight-card">
+            <div class="highlight-badge">Pagina</div>
+            <span class="folder-icon">🍦</span>
+            <h2>Semana 7 - Entrega 1</h2>
+            <p>Heladería Frío Natural</p>
+        </a>
+
+    </div>
+
+</body>
+</html>
