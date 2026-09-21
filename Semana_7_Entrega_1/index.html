@@ -20,8 +20,11 @@
             <li><a href="#contacto">Contacto</a></li>
         </ul>
         <div class="header-icons">
-            <span id="search-btn" class="icon" title="Buscar">🔍</span>
-            <span id="login-btn" class="icon" title="Iniciar Sesión">👤</span>
+                    <!-- Esta es la caja de texto nueva, oculta por defecto con display: none -->
+                    <input type="text" id="search-input" placeholder="Buscar sabor..." style="display: none; padding: 0.4rem 0.8rem; border: 1px solid var(--border-color); border-radius: 20px; outline: none; font-size: 0.9rem;">
+                    
+                    <span id="search-btn" class="icon" title="Buscar">🔍</span>
+                    <span id="login-btn" class="icon" title="Iniciar Sesión">👤</span>
             <span id="cart-btn" class="icon" title="Ver Carrito">🛒 <span id="cart-count">[ 0 ]</span></span>
         </div>
     </header>
