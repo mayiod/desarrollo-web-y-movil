@@ -1,9 +1,9 @@
 /* ==========================================
-   1. VARIABLES Y ESTILOS GLOBALES
+   Estilos Globales
    ========================================== */
 :root {
-    --primary-color: #d97706; /* Naranja/Caramelo */
-    --primary-hover: #b45309;
+    --primary-color: #75c885;
+    --primary-hover: #C875B7;
     --bg-color: #fcfbfa; 
     --text-main: #2c221e; 
     --text-light: #6b7280;
@@ -34,7 +34,7 @@ ul {
 }
 
 /* ==========================================
-   2. CABECERA (HEADER)
+    Header
    ========================================== */
 header {
     background-color: var(--white);
@@ -87,11 +87,11 @@ header {
 }
 
 /* ==========================================
-   3. SECCIÓN HERO
+   Seccion Hero
    ========================================== */
 .hero {
     height: 70vh;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../assets/img/banner.png") no-repeat center center/cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
