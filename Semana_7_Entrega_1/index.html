@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frío Natural - Helados Artesanales</title>
-    
-    <!-- Aquí conectamos tu archivo CSS externo -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <!-- 1. Cabecera (Header) -->
+    <!-- 1. Header -->
     <header>
         <div class="logo">Frío Natural</div>
         <ul class="nav-links">
@@ -23,25 +22,25 @@
                     <!-- Esta es la caja de texto nueva, oculta por defecto con display: none -->
                     <input type="text" id="search-input" placeholder="Buscar sabor..." style="display: none; padding: 0.4rem 0.8rem; border: 1px solid var(--border-color); border-radius: 20px; outline: none; font-size: 0.9rem;">
                     
-                    <span id="search-btn" class="icon" title="Buscar">🔍</span>
-                    <span id="login-btn" class="icon" title="Iniciar Sesión">👤</span>
-            <span id="cart-btn" class="icon" title="Ver Carrito">🛒 <span id="cart-count">[ 0 ]</span></span>
+                    <img src="./assets/img/buscar.png" id="search-btn" class="icon" title="Buscar" width="24" height="24"></img>
+                    <img src="./assets/img/usuario.png" id="login-btn" class="icon" title="Iniciar Sesión" width="24" height="24"></img>
+            <img src="./assets/img/carrito.png" id="cart-btn" class="icon" title="Carrito de Compras" width="24" height="24"></img>
         </div>
     </header>
 
     <main>
-        <!-- 2. Sección Principal (Hero Section) -->
+        <!-- 2. Sección Principal -->
         <section class="hero">
             <div class="hero-content">
                 <h1>Helados 100% artesanales y naturales</h1>
-                <p>El verdadero sabor de la fruta fresca y la cremosidad tradicional en envases y crujientes cucuruchos.</p>
+                <p>Somos la marca de helados artesanales que lleva el sabor natural a tu paladar.</p>
                 <div class="hero-buttons">
                     <a href="#sabores" class="btn btn-solid">Ver Sabores</a>
                 </div>
             </div>
         </section>
 
-        <!-- 3. Catálogo de Productos (Separado como en el diagrama) -->
+        <!-- 3. Catálogo de Productos -->
         <section id="sabores" class="products">
             
             <!-- Categoría: Helados -->
@@ -51,10 +50,10 @@
                 <div class="product-card">
                     <div class="product-image">
                         <span class="tag">Más Vendido</span>
-                        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=500&q=80" alt="Helado de Pistacho Artesanal">
+                        <img src="./assets/img/hCookiesCream.png" alt="Helado de Cookies & Cream">
                     </div>
                     <div class="product-info">
-                        <h4 class="product-name">Pistacho Siciliano Cremoso</h4>
+                        <h4 class="product-name">Cookies & Cream</h4>
                         <div class="product-price">$4.500 CLP</div>
                         <button class="btn-cart add-to-cart">Agregar al carrito</button>
                     </div>
@@ -63,10 +62,10 @@
                 <!-- Producto 2 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&w=500&q=80" alt="Helado de Frutos Rojos">
+                        <img src="./assets/img/hFrutosRojos.png" alt="Helado de Frutos del Bosque">
                     </div>
                     <div class="product-info">
-                        <h4 class="product-name">Frutos Rojos al Agua (Vegan)</h4>
+                        <h4 class="product-name">Frutos del Bosque</h4>
                         <div class="product-price">$4.000 CLP</div>
                         <button class="btn-cart add-to-cart">Agregar al carrito</button>
                     </div>
@@ -75,10 +74,10 @@
                 <!-- Producto 3 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1557142046-c704a3adf364?auto=format&fit=crop&w=500&q=80" alt="Chocolate Belga">
+                        <img src="./assets/img/hChocolate.png" alt="Chocolate ">
                     </div>
                     <div class="product-info">
-                        <h4 class="product-name">Chocolate Amargo 70%</h4>
+                        <h4 class="product-name">Chocolate</h4>
                         <div class="product-price">$4.500 CLP</div>
                         <button class="btn-cart add-to-cart">Agregar al carrito</button>
                     </div>
@@ -115,21 +114,37 @@
         </section>
     </main>
 
-    <!-- (Footer) -->
-    <footer id="contacto">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>Frío Natural</h4>
-                <p>Heladería artesanal comprometida con la calidad y el sabor auténtico.</p>
+    <!-- Footer -->
+    <footer id="contacto" class="bg-dark text-white py-5 mt-5">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <h4 class="text-uppercase text-white mb-3">Frío Natural</h4>
+                <p>Somos tu Heladería Artesanal favorita.</p>
             </div>
-            <div class="footer-col">
-                <h4>Contacto</h4>
-                <p>Email: Christian.Ayo@frionatural.cl</p>
-                <p>Teléfono: +56 9 1234 5678</p>
+            <div class="col-md-6">
+                <h4 class="text-uppercase text-white mb-3">Contacto</h4>
+                <div class="row mb-2">
+                    <div class="col-12 col-sm-auto">
+                        Email: Christian.Ayo@frionatural.cl
+                    </div>
+                    <div class="col-auto d-none d-sm-block" >
+                        -
+                    </div>
+                    <div class="col-12 col-sm-auto" >
+                        Matias.Catalan@frionatural.cl
+                    </div>
+                </div>
+                <p class="mb-1">Instagram: @frionatural</p>
+                <p class="mb-0">Teléfono: +56 9 1234 5678</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Frío Natural. Todos los derechos reservados.</p>
+        <div class="row border-top border-secondary pt-4">
+            <div class="col-12 text-center">
+                <p class="text-secondary mb-0">&copy; 2026 Frío Natural. Todos los derechos reservados.</p>
+            </div>
+        </div>
+
         </div>
     </footer>
 
