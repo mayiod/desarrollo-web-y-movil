@@ -429,3 +429,11 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+#contacto a {
+    transition: color 0.3s ease; 
+}
+
+#contacto a:hover {
+    color: var(--primary-color) !important; 
+}

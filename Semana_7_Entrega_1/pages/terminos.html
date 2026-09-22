@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frío Natural - Helados Artesanales</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- 1. Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-3">
+        <div class="container">
+
+            <!-- Logo con Imagen -->
+            <a class="navbar-brand" href="../index.html">
+                <img src="../assets/img/logo.png" alt="Logo Frío Natural" height="80">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContenido"
+                aria-controls="navbarContenido" aria-expanded="false" aria-label="Desplegar navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContenido">
+
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-3">
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase fw-semibold" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase fw-semibold" href="#sabores">Helados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase fw-semibold" href="#paletas">Paletas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase fw-semibold" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+                <div
+                    class="d-flex align-items-center gap-3 mt-3 mt-lg-0 position-relative justify-content-start justify-content-lg-end flex-wrap">
+
+                    <div id="search-container" class="position-absolute"
+                        style="display: none; z-index: 1050; width: 100%; max-width: 300px; left: 0; top: -50px;">
+                        <input type="text" id="search-input" class="form-control form-control-sm rounded-pill w-100"
+                            placeholder="Buscar sabor...">
+                    </div>
+                    <img src="../assets/img/buscar.png" id="search-btn" class="icon" title="Buscar" width="24"
+                        height="24" style="cursor: pointer;">
+
+                    <img src="../assets/img/usuario.png" id="login-btn" class="icon" title="Iniciar Sesión" width="24"
+                        height="24" style="cursor: pointer;">
+
+                    <img src="../assets/img/carrito.png" id="cart-btn" class="icon" title="Carrito de Compras"
+                        width="24" height="24" style="cursor: pointer;">
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main -->
+
+    <main class="container py-5 mt-4" style="min-height: 60vh;">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <h1 class="display-6 fw-bold mb-4">Términos y Condiciones</h1>
+                <p class="text-muted mb-5">Última actualización: Septiembre 2026</p>
+
+                <h4 class="mb-3">1. Uso del Sitio Web</h4>
+                <p class="mb-4">Al acceder a este sitio, usted acepta estar sujeto a estos términos de servicio y a
+                    todas las leyes y regulaciones aplicables. Todo el contenido de este sitio web es propiedad de Frío
+                    Natural.</p>
+
+                <h4 class="mb-3">2. Precios y Pagos</h4>
+                <p class="mb-4">Todos los precios de nuestros productos están expresados en Pesos Chilenos (CLP) e
+                    incluyen los impuestos legales. Nos reservamos el derecho de modificar los precios en cualquier
+                    momento sin previo aviso.</p>
+
+                <h4 class="mb-3">3. Disponibilidad de Productos</h4>
+                <p class="mb-4">Al trabajar con frutas de temporada, nuestros sabores están sujetos a disponibilidad de
+                    stock. Nos contactaremos de inmediato si un producto de su pedido se encuentra agotado.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="row mb-4">
+
+                <!-- Columna 1: Frío Natural -->
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h4 class="text-uppercase text-white mb-3">Frío Natural</h4>
+                    <p class="text-light opacity-75">Paletas y helados hechos con fruta de temporada, sin colorantes ni
+                        saborizantes artificiales. Despachamos frío, a domicilio.</p>
+                    <a href="acerca.html" class="text-white text-decoration-none fw-bold">Acerca de Nosotros</a>
+                </div>
+
+                <!-- Columna 2: Legales -->
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h4 class="text-uppercase text-white mb-3">Legales</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="terminos.html" class="text-light text-decoration-none opacity-75">Términos y
+                                Condiciones</a>
+                        </li>
+                        <li>
+                            <a href="despachos.html" class="text-light text-decoration-none opacity-75">Política de
+                                Despacho y Reembolsos</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Contacto -->
+                <div class="col-md-4">
+                    <h4 class="text-uppercase text-white mb-3">Contacto</h4>
+                    <p class="text-light opacity-75 mb-2">Email: Soporte@frionatural.cl</p>
+                    <p class="text-light opacity-75 mb-2">Instagram: @frionatural</p>
+                    <p class="text-light opacity-75 mb-0">Teléfono: +56 9 1234 5678</p>
+                </div>
+
+            </div>
+
+            <!-- Parte Inferior -->
+            <div class="row border-top border-secondary pt-4">
+                <div class="col-12 text-center">
+                    <p class="text-secondary mb-0">&copy; 2026 Frío Natural. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeLogin">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" placeholder="tu@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" placeholder="********" required>
+                </div>
+                <button type="submit" class="btn btn-solid w-100">Ingresar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="cartModal" class="modal">
+        <div class="modal-content cart-content">
+            <span class="close-modal" id="closeCart">&times;</span>
+            <h2>Tu Carrito</h2>
+            <div class="cart-items-container">
+                <p class="empty-cart-msg">Tu carrito está vacío.</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">Total: <span>$0 CLP</span></div>
+                <button class="btn btn-solid w-100">Proceder al pago</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

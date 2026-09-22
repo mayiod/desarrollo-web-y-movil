@@ -31,17 +31,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- LÓGICA DEL BUSCADOR ---
+    const searchContainer = document.getElementById('search-container'); // Capturamos el nuevo div
     const searchInput = document.getElementById('search-input');
     const productCards = document.querySelectorAll('.product-card');
 
     searchBtn.addEventListener('click', () => {
-        if (searchInput.style.display === 'none' || searchInput.style.display === '') {
-            searchInput.style.display = 'inline-block';
+        if (searchContainer.style.display === 'none' || searchContainer.style.display === '') {
+            searchContainer.style.display = 'block'; 
+            
+            if (window.innerWidth >= 992) {
+                 searchContainer.style.left = 'auto';
+                 searchContainer.style.right = '100%';
+                 searchContainer.style.top = '50%';
+                 searchContainer.style.transform = 'translateY(-50%)';
+                 searchContainer.style.marginRight = '15px';
+            } else {
+                 searchContainer.style.left = '0';
+                 searchContainer.style.right = 'auto';
+                 searchContainer.style.top = '-55px'; // Lo subimos arriba de los iconos
+                 searchContainer.style.transform = 'none';
+                 searchContainer.style.marginRight = '0';
+            }
+
             searchInput.focus();
         } else {
-            searchInput.style.display = 'none';
+            searchContainer.style.display = 'none';
             searchInput.value = ''; 
-            productCards.forEach(card => card.style.display = ''); // Restablecer vista
+            productCards.forEach(card => card.style.display = ''); 
         }
     });
 
