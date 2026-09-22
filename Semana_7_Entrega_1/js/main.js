@@ -19,17 +19,6 @@ const closeModal = (modal) => {
     setTimeout(() => modal.style.display = 'none', 300);
 };
 
-loginBtn.addEventListener('click', () => openModal(loginModal));
-cartBtn.addEventListener('click', () => openModal(cartModal));
-searchBtn.addEventListener('click', () => {
-    const searchInput = document.getElementById('search-input');
-    if (searchInput.style.display === 'none') {
-        searchInput.style.display = 'block';
-    } else {
-        searchInput.style.display = 'none';
-    }
-});
-
 closeLogin.addEventListener('click', () => closeModal(loginModal));
 closeCart.addEventListener('click', () => closeModal(cartModal));
 window.addEventListener('click', (e) => {
@@ -109,11 +98,11 @@ const searchInput = document.getElementById('search-input');
 const productCards = document.querySelectorAll('.product-card');
 
 searchBtn.addEventListener('click', () => {
-    if (searchInput.style.display === 'none') {
-        searchInput.style.display = 'inline-block';
-        searchInput.focus();
+    if (searchInput.classList.contains('d-none')) {
+        searchInput.classList.remove('d-none'); 
+        searchInput.focus(); 
     } else {
-        searchInput.style.display = 'none';
+        searchInput.classList.add('d-none'); 
         searchInput.value = ''; 
         productCards.forEach(card => card.style.display = '');
     }
