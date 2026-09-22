@@ -1,14 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Referencias al DOM ---
     const loginBtn = document.getElementById('login-btn');
     const cartBtn = document.getElementById('cart-btn');
     const searchBtn = document.getElementById('search-btn');
+    
+    const searchContainer = document.getElementById('search-container'); 
+    const searchInput = document.getElementById('search-input');
 
     const loginModal = document.getElementById('loginModal');
     const cartModal = document.getElementById('cartModal');
-
     const closeLogin = document.getElementById('closeLogin');
     const closeCart = document.getElementById('closeCart');
 
+    // --- Modales ---
     const openModal = (modal) => {
         modal.style.display = 'flex';
         setTimeout(() => modal.classList.add('show'), 10);
@@ -30,43 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === cartModal) closeModal(cartModal);
     });
 
-    const searchInput = document.getElementById('search-input');
-
-    searchBtn.addEventListener('click', () => {
-        const productCards = document.querySelectorAll('.product-card');
-        if (searchInput.style.display === 'none' || searchInput.style.display === '') {
-            searchInput.style.display = 'inline-block';
-            searchInput.focus();
-        } else {
-            searchContainer.style.display = 'none';
-            searchInput.value = ''; 
-            productCards.forEach(card => card.style.display = ''); 
-        }
-    });
-
-    searchInput.addEventListener('input', (e) => {
-        const textoBuscado = e.target.value.toLowerCase();
-        const productCards = document.querySelectorAll('.product-card');
-        
-        productCards.forEach(card => {
-            const nameEl = card.querySelector('.product-name');
-            if (nameEl) {
-                const nombreProducto = nameEl.textContent.toLowerCase();
-                if (nombreProducto.includes(textoBuscado)) {
-                    card.style.display = ''; 
-                } else {
-                    card.style.display = 'none'; 
-                }
-            }
-        });
-    });
+    // --- Cargar mas productos ---
+    let heladosLoaded = false;
+    let paletasLoaded = false;
 
     const loadMoreHeladosBtn = document.getElementById('load-more-helados');
     if (loadMoreHeladosBtn) {
         loadMoreHeladosBtn.addEventListener('click', () => {
+            heladosLoaded = true; 
             const extraHelados = document.querySelectorAll('.extra-helados');
             extraHelados.forEach(card => {
-                card.style.display = '';
+                card.style.display = 'flex'; 
             });
             loadMoreHeladosBtn.style.display = 'none';
         });
@@ -75,14 +53,88 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadMorePaletasBtn = document.getElementById('load-more-paletas');
     if (loadMorePaletasBtn) {
         loadMorePaletasBtn.addEventListener('click', () => {
+            paletasLoaded = true; 
             const extraPaletas = document.querySelectorAll('.extra-paletas');
             extraPaletas.forEach(card => {
-                card.style.display = '';
+                card.style.display = 'flex'; 
             });
             loadMorePaletasBtn.style.display = 'none';
         });
     }
 
+    // --- Buscador ---
+    const productCards = document.querySelectorAll('.product-card');
+
+    searchBtn.addEventListener('click', (e) => {
+        e.preventDefault(); 
+
+        if (searchContainer.style.display === 'block') {
+            searchContainer.style.display = 'none';
+            searchInput.value = ''; 
+            
+            productCards.forEach(card => {
+                if (card.classList.contains('extra-helados') && !heladosLoaded) {
+                    card.style.display = 'none'; 
+                } else if (card.classList.contains('extra-paletas') && !paletasLoaded) {
+                    card.style.display = 'none'; 
+                } else {
+                    card.style.display = 'flex'; 
+                }
+            }); 
+        } else {
+            searchContainer.style.display = 'block';
+            
+            if (window.innerWidth >= 992) {
+                 // PC
+                 searchContainer.style.position = 'absolute';
+                 searchContainer.style.left = 'auto';
+                 searchContainer.style.right = '100%';
+                 searchContainer.style.top = '50%';
+                 searchContainer.style.transform = 'translateY(-50%)';
+                 searchContainer.style.marginRight = '15px';
+                 searchContainer.style.marginBottom = '0';
+            } else {
+                 // Celular
+                 searchContainer.style.position = 'absolute'; 
+                 searchContainer.style.left = '0';
+                 searchContainer.style.right = '0';
+                 searchContainer.style.top = '100%'; 
+                 searchContainer.style.transform = 'none';
+                 searchContainer.style.marginRight = '0';
+                 searchContainer.style.marginBottom = '15px'; 
+                 searchContainer.style.maxWidth = '100%';
+            }
+
+            searchInput.focus();
+        }
+    });
+
+    searchInput.addEventListener('input', (e) => {
+        const textoBuscado = e.target.value.toLowerCase();
+        
+        productCards.forEach(card => {
+            if (card.classList.contains('extra-helados') && !heladosLoaded) {
+                card.style.display = 'none';
+                return;
+            }
+            if (card.classList.contains('extra-paletas') && !paletasLoaded) {
+                card.style.display = 'none';
+                return;
+            }
+
+            const nameEl = card.querySelector('.product-name');
+            if (nameEl) {
+                const nombreProducto = nameEl.textContent.toLowerCase();
+                if (nombreProducto.includes(textoBuscado)) {
+                    card.style.display = 'flex'; 
+                } else {
+                    card.style.display = 'none'; 
+                }
+            }
+        });
+    });
+
+    // --- Carrito ---
     let cartItems = [];
     const cartItemsContainer = document.querySelector('.cart-items-container');
     const cartTotalElement = document.querySelector('.cart-total span');
