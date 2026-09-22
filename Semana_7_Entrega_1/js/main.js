@@ -30,44 +30,68 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === cartModal) closeModal(cartModal);
     });
 
-    // --- LÓGICA DEL BUSCADOR ---
     const searchInput = document.getElementById('search-input');
-    const productCards = document.querySelectorAll('.product-card');
 
     searchBtn.addEventListener('click', () => {
+        const productCards = document.querySelectorAll('.product-card');
         if (searchInput.style.display === 'none' || searchInput.style.display === '') {
             searchInput.style.display = 'inline-block';
             searchInput.focus();
         } else {
             searchInput.style.display = 'none';
             searchInput.value = ''; 
-            productCards.forEach(card => card.style.display = ''); // Restablecer vista
+            productCards.forEach(card => card.style.display = ''); 
         }
     });
 
     searchInput.addEventListener('input', (e) => {
         const textoBuscado = e.target.value.toLowerCase();
+        const productCards = document.querySelectorAll('.product-card');
         
         productCards.forEach(card => {
-            const nombreProducto = card.querySelector('.product-name').textContent.toLowerCase();
-            if (nombreProducto.includes(textoBuscado)) {
-                card.style.display = ''; 
-            } else {
-                card.style.display = 'none'; 
+            const nameEl = card.querySelector('.product-name');
+            if (nameEl) {
+                const nombreProducto = nameEl.textContent.toLowerCase();
+                if (nombreProducto.includes(textoBuscado)) {
+                    card.style.display = ''; 
+                } else {
+                    card.style.display = 'none'; 
+                }
             }
         });
     });
 
-    // --- LÓGICA DEL CARRITO DE COMPRAS ---
+    const loadMoreHeladosBtn = document.getElementById('load-more-helados');
+    if (loadMoreHeladosBtn) {
+        loadMoreHeladosBtn.addEventListener('click', () => {
+            const extraHelados = document.querySelectorAll('.extra-helados');
+            extraHelados.forEach(card => {
+                card.style.display = '';
+            });
+            loadMoreHeladosBtn.style.display = 'none';
+        });
+    }
+
+    const loadMorePaletasBtn = document.getElementById('load-more-paletas');
+    if (loadMorePaletasBtn) {
+        loadMorePaletasBtn.addEventListener('click', () => {
+            const extraPaletas = document.querySelectorAll('.extra-paletas');
+            extraPaletas.forEach(card => {
+                card.style.display = '';
+            });
+            loadMorePaletasBtn.style.display = 'none';
+        });
+    }
+
     let cartItems = [];
     const cartItemsContainer = document.querySelector('.cart-items-container');
     const cartTotalElement = document.querySelector('.cart-total span');
     const cartCountElement = document.getElementById('cart-count');
-    const addToCartButtons = document.querySelectorAll('.btn-cart.add-to-cart');
 
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const productCard = e.target.closest('.product-card');
+    document.addEventListener('click', (e) => {
+        if (e.target && e.target.classList.contains('add-to-cart')) {
+            const button = e.target;
+            const productCard = button.closest('.product-card');
             const productName = productCard.querySelector('.product-name').textContent;
             const priceText = productCard.querySelector('.product-price').textContent;
             
@@ -89,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1000);
 
             updateCartUI();
-        });
+        }
     });
 
     function updateCartUI() {
@@ -118,7 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        cartCountElement.textContent = `[ ${totalItems} ]`;
+        if (cartCountElement) {
+            cartCountElement.textContent = `[ ${totalItems} ]`;
+        }
         cartTotalElement.textContent = `$${total.toLocaleString('es-CL')} CLP`;
     }
 
