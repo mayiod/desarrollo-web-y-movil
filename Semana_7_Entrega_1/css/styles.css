@@ -143,7 +143,7 @@ header {
 }
 
 /* ==========================================
-   4. PRODUCTOS (CATÁLOGO)
+   Productos
    ========================================== */
 .products {
     padding: 4rem 5%;
@@ -253,7 +253,7 @@ header {
 }
 
 /* ==========================================
-   5. MODALES (LOGIN Y CARRITO)
+   Login y Carrito Modal
    ========================================== */
 .modal {
     display: none; /* Oculto por defecto, se activa con JS */
@@ -369,7 +369,7 @@ header {
 }
 
 /* ==========================================
-   6. FOOTER
+   Footer
    ========================================== */
 footer {
     background-color: var(--text-main);
@@ -400,7 +400,7 @@ footer {
 }
 
 /* ==========================================
-   7. RESPONSIVIDAD (MEDIA QUERIES)
+   Responsive
    ========================================== */
 @media (max-width: 768px) {
     header {
