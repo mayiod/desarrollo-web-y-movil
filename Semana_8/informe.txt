@@ -1,0 +1,33 @@
+# API Gateway, Vault y FastAPI
+--Secciones 14 a 24--
+
+## 1. En Vault guardamos:
+
+Todo lo delicado lo dejamos en Vault, no en el código. Ahí están los tokens que distinguen a cada tipo de cliente (`user_token` y `admin_token`) y la clave interna `backend_shared_secret`, que el Gateway usa para hablar con el Backend.
+
+## 2. ¿Qué decide el API Gateway?
+
+El Gateway es la única puerta de entrada al sistema y en cada solicitud toma dos decisiones:
+
+* Autenticación: mira el token Bearer que llega y lo busca entre los que están en Vault. Si lo encuentra, sabe si quien llama es un usuario o un administrador. Si no, lo rechaza.
+* Autorización: ya sabiendo quién es, revisa si su rol puede entrar a esa ruta. Por ejemplo, `/orders` es solo para administradores.
+
+## 3. ¿Qué recibe el Backend?
+
+El token del cliente nunca sale del Gateway. Lo que hace es armar una solicitud nueva con dos headers propios:
+
+* `X-Gateway-Secret`, que le demuestra al Backend que la llamada viene del Gateway y no de cualquiera.
+* `X-Authenticated-Client`, que deja registrado quién originó la solicitud.
+
+## 4. Token válido, pero sin autorización
+
+Si alguien con rol "usuario" pide `/orders`, el Gateway lo reconoce sin problema, pero como ese rol no tiene acceso a esa ruta corta la solicitud ahí mismo. El Backend ni se entera de que hubo un intento, así que la lógica de negocio queda a salvo.
+
+## 5. Códigos HTTP
+
+* 401 Unauthorized: no mandaron token o el que mandaron no existe. El sistema no sabe quién es el cliente.
+* 403 Forbidden: el token es válido y el Gateway sabe quién es, pero su rol no le permite hacer eso.
+
+## 6. Punto adicional: empaquetado en Docker
+
+Para que el proyecto funcione igual en cualquier computador y no dependa de lo que cada uno tenga instalado, lo armamos con Docker Compose. El Gateway, el Backend y Vault corren como servicios separados dentro de una red interna de Docker. Con eso el despliegue es mucho más simple y logramos el aislamiento de red que pedía el laboratorio.
