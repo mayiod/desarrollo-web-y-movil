@@ -3,4 +3,4 @@ Esta versión modificada de Windows elimina y bloquea de raíz servicios como Hy
 lo que me hizo imposible levantar Docker para ejecutar las pruebas del proyecto. 
 Intenté restaurar los servicios por consola y usando scripts del propio sistema, pero el bloqueo era tan profundo que no funcionó. 
 Al final, la única solución que me quedó fue formatear el computador por completo para instalar un Windows normal y recién ahí poder correr los contenedores. 
-Por este motivo no pude subir el trabajo a tiempo.
+Por este motivo no pude subir el trabajo a tiempo. (actualizacion, foramtie y no funciono, lo que si funciono fue sacar la pila a la placa y hacer y bypass a Docker en su setting)
