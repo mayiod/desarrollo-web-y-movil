@@ -1,0 +1,88 @@
+--- Checkpoint de aprendizaje (Conceptos previos) ---
+ 
+Usuario: La persona real que ingresa sus credenciales, como Ana o Ernesto.
+Cliente: La aplicación o el navegador (Frontend) que se comunica con el sistema en nombre del usuario.
+Token: Una cadena temporal sin significado propio, generada por el servicio de autenticación. Representa una sesión y apunta a una identidad concreta.
+Servicio: Un componente independiente de la arquitectura, con una responsabilidad propia y bien delimitada, como enrutar o aplicar la lógica de negocio.
+Secreto: Un valor permanente y de confianza, guardado de forma segura en Vault. Lo usan los servicios para comunicarse entre sí, nunca los usuarios.
+ 
+--- 6.4. Preguntas para pensar (Vault) ---
+ 
+1. ¿Por qué sería peligroso escribir estos secretos directamente en Git?
+Porque cualquiera que tenga acceso al repositorio podría leerlos y usarlos para saltarse la seguridad o hacerse pasar por otro microservicio.
+ 
+2. ¿Por qué el usuario final no debería conocer backend_shared_secret?
+Porque ese secreto sirve para que el Backend compruebe que la petición viene del API Gateway. Si un usuario lo conociera, podría saltarse el Gateway y conectarse directo al Backend.
+ 
+3. ¿Por qué Vault no reemplaza al Auth Service?
+Porque cumplen funciones distintas. Vault administra los secretos técnicos entre servicios, mientras que el Auth Service se encarga de la identidad, las credenciales y las sesiones temporales de los usuarios.
+ 
+--- 16. Actividad de análisis arquitectónico ---
+ 
+Auth Service:
+- ¿Qué información recibe? Las credenciales del usuario y los tokens que hay que validar (introspección).
+- ¿Qué información debería conocer? Los usuarios, sus contraseñas (hasheadas) y las sesiones activas.
+- ¿Qué información no debería conocer? La lógica de negocio, ni tampoco ejecutar operaciones sobre productos.
+- ¿Qué decisión de seguridad ejecuta? Decide si una credencial es válida y si un token sigue activo.
+- ¿Qué sucede si ese componente falla? Nadie puede iniciar sesión ni validar sus tokens vigentes, y el Gateway responde con error.
+ 
+API Gateway:
+- ¿Qué información recibe? La cookie de sesión que envía el navegador desde el frontend.
+- ¿Qué información debería conocer? Las políticas de enrutamiento, las reglas de autorización y los secretos de comunicación.
+- ¿Qué información no debería conocer? Las contraseñas de los usuarios, ni ejecutar la lógica central del negocio.
+- ¿Qué decisión de seguridad ejecuta? Valida la sesión, autoriza según el rol y decide el ruteo final hacia el backend.
+- ¿Qué sucede si ese componente falla? Todo el sistema queda inaccesible y devuelve errores de la serie 500.
+ 
+Vault:
+- ¿Qué información recibe? Las solicitudes de autenticación entre servicios que piden un secreto.
+- ¿Qué información debería conocer? Los secretos técnicos y estructurales que necesita el sistema.
+- ¿Qué información no debería conocer? A los usuarios finales ni sus tokens de sesión.
+- ¿Qué decisión de seguridad ejecuta? Decide qué servicios de la red pueden leer los secretos guardados.
+- ¿Qué sucede si ese componente falla? El API Gateway no puede autenticarse ni con el Auth Service ni con el Backend.
+ 
+Backend:
+- ¿Qué información recibe? La identidad propagada en los headers y el secreto con el que el Gateway demuestra que la petición es suya.
+- ¿Qué información debería conocer? Las reglas de negocio, el dominio y los datos (productos, órdenes).
+- ¿Qué información no debería conocer? Las contraseñas de los usuarios, ni aceptar tráfico directo que no haya sido validado antes.
+- ¿Qué decisión de seguridad ejecuta? Decide si ejecuta la lógica de negocio, pero solo después de confirmar que la petición viene de una fuente confiable.
+- ¿Qué sucede si ese componente falla? El usuario ve errores de Bad Gateway (502), aunque el enrutamiento principal no se ve comprometido.
+ 
+Frontend:
+- ¿Qué información recibe? Las acciones directas de la persona que usa la aplicación.
+- ¿Qué información debería conocer? Cómo mostrar la interfaz y cómo comunicarse con el API Gateway.
+- ¿Qué información no debería conocer? No debería guardar el token en lugares inseguros como localStorage, ni hacer validaciones críticas de autorización.
+- ¿Qué decisión de seguridad ejecuta? Solo decide cómo se presentan los datos y cómo se navega por ellos.
+- ¿Qué sucede si ese componente falla? El sistema sigue siendo seguro, pero el usuario se queda sin una interfaz para usarlo.
+ 
+--- 17. Actividad de razonamiento ---
+ 
+1. ¿Qué ocurriría si el Frontend llamara directamente al Backend?
+El Backend rechazaría la solicitud con un error 403 Forbidden, porque el Frontend no tiene el X-Gateway-Secret que demuestra que la petición pasó por los controles del Gateway.
+ 
+2. ¿Qué ocurriría si el Backend confiara en cualquier header X-Authenticated-User?
+El sistema sería vulnerable a la suplantación de identidad: cualquier cliente malicioso podría falsificar ese header y hacerse pasar por otro usuario sin haberse autenticado.
+ 
+3. ¿Qué cambia si Auth Service está caído?
+El API Gateway no puede comprobar si las sesiones actuales siguen activas ni procesar nuevos inicios de sesión, así que el sistema completo falla con un error generalizado (503).
+ 
+4. ¿Qué diferencia existe entre un token opaco y JWT?
+Un token opaco es solo una cadena aleatoria que no dice nada por sí misma, así que el Gateway tiene que consultar al Auth Service (introspección) para saber a quién pertenece. Un JWT, en cambio, lleva los datos de identidad dentro, firmados criptográficamente.
+ 
+5. ¿Qué beneficios y costos tiene consultar introspection en cada request?
+El beneficio es la seguridad en tiempo real: se puede revocar una sesión de inmediato. El costo es más latencia de red y una carga constante sobre el Auth Service en cada petición.
+ 
+6. ¿Qué datos sería peligroso registrar en logs?
+Contraseñas (incluso hasheadas), tokens de sesión vigentes, datos personales sensibles y los secretos estructurales guardados en Vault.
+ 
+7. ¿Qué controles adicionales serían necesarios en producción?
+Habría que usar HTTPS, cookies con el atributo Secure, protección CSRF, políticas CORS estrictas y rate limiting. También rotar los secretos periódicamente y guardar las contraseñas con un hashing seguro.
+ 
+--- Checkpoint de aprendizaje final ---
+ 
+1. Dónde se autentica Ana: Solo en el Auth Service.
+2. Quién genera su token: El Auth Service, una vez que verifica sus credenciales.
+3. Quién decide si ese token sigue vigente: El Auth Service, mediante la introspección.
+4. Quién determina si puede eliminar un producto: El API Gateway, aplicando las políticas de autorización según los roles de su identidad.
+5. Quién guarda los secretos entre servicios: HashiCorp Vault.
+6. Por qué el Backend rechaza accesos directos: Porque exige un secreto interno que solo conoce el API Gateway.
+7. Qué ocurre exactamente durante logout: El Auth Service revoca el token en el servidor y, al mismo tiempo, el Gateway elimina la cookie del navegador del usuario.

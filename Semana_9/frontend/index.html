@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Frontend Seguro</title>
+</head>
+<body>
+    <h1>Portal de Pruebas</h1>
+    
+    <div id="login-section">
+        <h3>Login</h3>
+        <input type="text" id="username" placeholder="Usuario (ej. ana)">
+        <input type="password" id="password" placeholder="Contraseña (ej. 1234)">
+        <button onclick="hacerLogin()">Ingresar</button>
+    </div>
+
+    <div id="actions-section" style="display: none; margin-top: 20px;">
+        <button onclick="consultarProductos()">Consultar Productos</button>
+        <button onclick="hacerLogout()">Cerrar Sesión</button>
+        <pre id="resultado"></pre>
+    </div>
+
+    <script>
+        async function hacerLogin() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            
+            const res = await fetch("/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({ username, password })
+            });
+
+            if (res.ok) {
+                document.getElementById("login-section").style.display = "none";
+                document.getElementById("actions-section").style.display = "block";
+                document.getElementById("resultado").innerText = "Login exitoso. Sesión iniciada mediante cookie HttpOnly.";
+            } else {
+                alert("Error de autenticación: 401 Unauthorized");
+            }
+        }
+
+        async function consultarProductos() {
+            const res = await fetch("/api/products", {
+                credentials: "include"
+            });
+            const data = await res.text();
+            document.getElementById("resultado").innerText = `Código: ${res.status}\nRespuesta: ${data}`;
+        }
+
+        async function hacerLogout() {
+            await fetch("/auth/logout", {
+                method: "POST",
+                credentials: "include"
+            });
+            document.getElementById("login-section").style.display = "block";
+            document.getElementById("actions-section").style.display = "none";
+            document.getElementById("resultado").innerText = "";
+            alert("Sesión cerrada y token revocado.");
+        }
+    </script>
+</body>
+</html>
