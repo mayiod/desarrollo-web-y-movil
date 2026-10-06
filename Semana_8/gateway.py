@@ -94,3 +94,47 @@ async def proxy(path: str, request: Request, auth=Depends(authenticate_client)):
         status_code=upstream.status_code,
         headers=response_headers
     )
+
+@app.api_route("/api/{path:path}", methods=["GET", "POST", "PUT", "PATCH", "DELETE"])
+async def proxy(path: str, request: Request, auth=Depends(authenticate_client)):
+    # Autorización de ejemplo: bloquea /orders si no es administrador
+    roles = auth.get("roles", [])
+    if path.startswith("orders") and "administrador" not in roles:
+        raise HTTPException(status_code=403, detail="Perfil usuario no autorizado para acceder a ordenes")
+        
+    target_url = f"{BACKEND_URL}/{path}"
+    body = await request.body()
+    
+    # Inyección de headers con la identidad del usuario y concatenación de roles
+    gateway_headers = {
+        "X-Gateway-Secret": auth["backend_secret"],
+        "X-Authenticated-Client": auth.get("client_id", ""),
+        "X-Authenticated-User": auth.get("username", ""),
+        "X-Authenticated-Roles": ",".join(roles)
+    }
+    
+    content_type = request.headers.get("content-type")
+    if content_type:
+        gateway_headers["content-type"] = content_type
+        
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            upstream = await client.request(
+                method=request.method,
+                url=target_url,
+                params=request.query_params,
+                content=body,
+                headers=gateway_headers
+            )
+    except httpx.RequestError:
+        raise HTTPException(status_code=502, detail="Backend no disponible")
+        
+    response_headers = {}
+    if "content-type" in upstream.headers:
+        response_headers["content-type"] = upstream.headers["content-type"]
+        
+    return Response(
+        content=upstream.content,
+        status_code=upstream.status_code,
+        headers=response_headers
+    )

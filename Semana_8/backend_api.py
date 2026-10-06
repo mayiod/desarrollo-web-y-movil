@@ -30,9 +30,18 @@ def health():
     return {"status": "OK"}
 
 @app.get("/products", dependencies=[Depends(verify_gateway)])
-def products(x_authenticated_client: str | None = Header(default=None)):
+def products(
+    x_authenticated_client: str | None = Header(default=None),
+    x_authenticated_user: str | None = Header(default=None),
+    x_authenticated_roles: str | None = Header(default=None)
+):
+    identity = {
+        "client_id": x_authenticated_client,
+        "username": x_authenticated_user,
+        "roles": x_authenticated_roles
+    }
     return {
-        "authenticated_client": x_authenticated_client,
+        "identity": identity,
         "products": [
             {"id": 1, "name": "Notebook", "price": 900000},
             {"id": 2, "name": "Monitor", "price": 250000}
@@ -40,9 +49,18 @@ def products(x_authenticated_client: str | None = Header(default=None)):
     }
 
 @app.get("/orders", dependencies=[Depends(verify_gateway)])
-def orders(x_authenticated_client: str | None = Header(default=None)):
+def orders(
+    x_authenticated_client: str | None = Header(default=None),
+    x_authenticated_user: str | None = Header(default=None),
+    x_authenticated_roles: str | None = Header(default=None)
+):
+    identity = {
+        "client_id": x_authenticated_client,
+        "username": x_authenticated_user,
+        "roles": x_authenticated_roles
+    }
     return {
-        "authenticated_client": x_authenticated_client,
+        "identity": identity,
         "orders": [
             {"id": 1001, "status": "paid"},
             {"id": 1002, "status": "pending"}
