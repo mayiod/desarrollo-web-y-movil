@@ -2,7 +2,6 @@ import argparse
 import json
 import time
 import xml.etree.ElementTree as ET
-
 import stomp
 
 DESTINO = "cola.pedidos"
