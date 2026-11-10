@@ -2,8 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 import warnings
-
-import Semana_14_Entrega_2.backend.analytics_pb2 as analytics__pb2
+import analytics_pb2 as analytics__pb2
 
 GRPC_GENERATED_VERSION = '1.85.1'
 GRPC_VERSION = grpc.__version__
