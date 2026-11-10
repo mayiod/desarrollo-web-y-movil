@@ -1,0 +1,13 @@
+[
+  {"name": "Cookies & Cream", "category": "helado", "price": 4500, "tag": "Más Vendido", "image": "assets/img/hCookiesCream.png", "alt": "Helado de Cookies & Cream", "visible_inicial": true, "stock_kg": 12.0},
+  {"name": "Frutos del Bosque", "category": "helado", "price": 4000, "tag": "", "image": "assets/img/hFrutosRojos.png", "alt": "Helado de Frutos del Bosque", "visible_inicial": true, "stock_kg": 10.5},
+  {"name": "Chocolate", "category": "helado", "price": 4500, "tag": "", "image": "assets/img/hChocolate.png", "alt": "Chocolate", "visible_inicial": true, "stock_kg": 15.0},
+  {"name": "Chocolate, Vainilla y Frambuesa", "category": "helado", "price": 4590, "tag": "", "image": "assets/img/ChocolateVainillaFrambuesa.png", "alt": "Chocolate, Vainilla y Frambuesa", "visible_inicial": false, "stock_kg": 8.0},
+  {"name": "Vaso de Helado de Mora", "category": "helado", "price": 5500, "tag": "", "image": "assets/img/VasoDeheladoDeMora.png", "alt": "Vaso de Helado de Mora", "visible_inicial": false, "stock_kg": 6.0},
+  {"name": "Pistacho, Chocolate, Vainilla y Frutilla", "category": "helado", "price": 6000, "tag": "", "image": "assets/img/PistachoChocolateVainillaFrutilla.png", "alt": "Pistacho, Chocolate, Vainilla y Frutilla", "visible_inicial": false, "stock_kg": 5.0},
+  {"name": "Paleta Rellena de Fresa", "category": "paleta", "price": 2500, "tag": "", "image": "assets/img/paletaFresa.png", "alt": "Paleta de Fresa", "visible_inicial": true, "stock_kg": 9.0},
+  {"name": "Paleta de Mango", "category": "paleta", "price": 2800, "tag": "Nuevo", "image": "assets/img/paletaMango.png", "alt": "Paleta de Mango", "visible_inicial": true, "stock_kg": 7.5},
+  {"name": "Paleta de Frambuesa", "category": "paleta", "price": 2500, "tag": "", "image": "assets/img/frambuesaPaleta.png", "alt": "Paleta de Frambuesa", "visible_inicial": true, "stock_kg": 9.0},
+  {"name": "Paleta de Mora", "category": "paleta", "price": 2590, "tag": "", "image": "assets/img/MoraPaleta.png", "alt": "Paleta de Mora", "visible_inicial": false, "stock_kg": 6.5},
+  {"name": "Paleta RTX 5090", "category": "paleta", "price": 5090, "tag": "", "image": "assets/img/paleta5090.png", "alt": "Paleta RTX 5090", "visible_inicial": false, "stock_kg": 3.0}
+]

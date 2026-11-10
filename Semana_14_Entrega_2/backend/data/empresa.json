@@ -1,0 +1,22 @@
+{
+  "nombre": "Frío Natural",
+  "descripcion": "Paletas y helados hechos con fruta de temporada, sin colorantes ni saborizantes artificiales. Despachamos frío, a domicilio.",
+  "moneda": "CLP",
+  "contacto": {
+    "email": "Soporte@frionatural.cl",
+    "instagram": "@frionatural",
+    "telefono": "+56 9 1234 5678"
+  },
+  "despacho": {
+    "radio_km": 15,
+    "tiempo_min_minutos": 45,
+    "tiempo_max_minutos": 90,
+    "horario": "Lunes a Domingo de 12:00 a 21:00 hrs"
+  },
+  "reembolsos": {
+    "acepta_devoluciones_por_cambio_de_opinion": false,
+    "plazo_reclamo_horas": 2,
+    "requiere_fotografia": true
+  },
+  "terminos_ultima_actualizacion": "Septiembre 2026"
+}

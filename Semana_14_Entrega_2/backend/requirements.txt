@@ -1,0 +1,8 @@
+strawberry-graphql[fastapi]
+httpx
+fastapi
+uvicorn[standard]
+httpx
+pydantic
+grpcio
+grpcio-tools

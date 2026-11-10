@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package analytics;
+
+service AnalyticsService {
+  // Operación Unary gRPC
+  rpc LogSale (SaleRequest) returns (SaleResponse) {}
+}
+
+message SaleRequest {
+  int32 order_id = 1;
+  int32 total = 2;
+}
+
+message SaleResponse {
+  bool success = 1;
+}
